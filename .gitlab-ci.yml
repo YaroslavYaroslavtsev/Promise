@@ -12,5 +12,5 @@ test_async:
    - impt auth login --local -u $IMPT_USER_NAME -w $IMPT_USER_PASSWORD -q
    - impt device assign -d $IMPT_DEVICE_IDS -g dgtest -q
    - impt test github -i github.impt -u $SPEC_GITHUB_USER -w $SPEC_GITHUB_TOKEN -q
-   - impt test create -g dgtest -t 240 -x Promise.lib.nut -i github.impt -q
+   - impt test create -g dgtest -t 240 -y Promise.lib.nut -i github.impt -q
    - impt test run
