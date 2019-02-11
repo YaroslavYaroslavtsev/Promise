@@ -1,0 +1,18 @@
+image: node:8.0
+
+cache:
+  paths:
+  - node_modules/
+
+stages:
+  - test
+
+test_async:
+  stage: test
+  script:
+   - npm i -g imp-central-impt@latest --quiet
+   - impt auth login --local -u $IMPT_USER_NAME -w $IMPT_USER_PASSWORD -q
+   - impt device assign -d $IMPT_DEVICE_IDS -g dgtest -q
+   - impt test github -i github.impt -u $SPEC_GITHUB_USER -w $SPEC_GITHUB_TOKEN -q
+   - impt test create -g dgtest -t 240 -x Promise.lib.nut -i github.impt -q
+   - impt test run
